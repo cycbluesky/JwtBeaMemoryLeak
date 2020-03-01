@@ -1,0 +1,32 @@
+﻿1. curl
+
+curl -k -v -X GET \
+https://localhost:5001/api/values \
+-H'x-jwt-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6InZhbGlkS2V5IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE4ODQ1MzY5NTJ9.1giLdDogaAH8ktUO3CB3DkY3ZuLigwafPfktTv5EOi-Vo3R4eXRewd0Gwh6Gpq7vKb5ii0IHPheYaNN-j-anD8yE-YdgvGq5Ybe7mxZbepyJpJFxKPq4h-AqKGNZZ49f6CDtdV2X9CtPhMOg5Kx-vzkyHuBB5N5EpaebER4eZrg5yMGP54nbn2MKDjosoYku4SG6bGaj7Ph6C1TWXqGhcEjGsWi1DSQbySqXr0ShW27f2jEN9bMjllA__9_yHp3IPF6PPS6x8GYml-jXX-ezNlKUhfaRiNSaq1PIGEyTUzEKU0SaFSYUxY6SpI_eW6ey2ZXfuGGqaIT4_DtRZKbQxA'
+
+
+curl -k -v -X GET \
+https://localhost:5001/api/values \
+-H'x-jwt-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwibmFtZSI6ImludmFsaWRLZXkiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTUxNjIzOTAyMn0.YlFwNHjDAPJ-TpDgXYxlFoOMiLEgpMXnzA1WJQ-qP-mLqJV7Cswn3cvqOw1PauPg9utbzfIXQ1RvxKGzVPJ_77foLHtj_C34hJg3bjr5w8FNDWY97xSggt3E2u9x-9Csso3gHmu2eVKOI4ZJWsIU4fpZt-_UiI2-ynZ5AAzDFwPP9ucY00LHT-e2tkrZOMpDYq3GqEKABrF5710l_7Jd20Ik9R7G1mnwc3PaRvnPkuALAxVeLdHG6UVPKBQ2B_qL21J5Sr3KXNpHxQmfe83JFur8JSymNowDLRahRjbm2RuHKBRkvfMqulTwbkRR4m__gOp2Ho5hCUW-BP8Gi7r_6Q'
+
+
+
+
+2. Test by vaild key
+
+wrk --latency -t1 -c10 -d30m \
+https://localhost:5001/api/values \
+-H'x-jwt-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6InZhbGlkS2V5IiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE4ODQ1MzY5NTJ9.1giLdDogaAH8ktUO3CB3DkY3ZuLigwafPfktTv5EOi-Vo3R4eXRewd0Gwh6Gpq7vKb5ii0IHPheYaNN-j-anD8yE-YdgvGq5Ybe7mxZbepyJpJFxKPq4h-AqKGNZZ49f6CDtdV2X9CtPhMOg5Kx-vzkyHuBB5N5EpaebER4eZrg5yMGP54nbn2MKDjosoYku4SG6bGaj7Ph6C1TWXqGhcEjGsWi1DSQbySqXr0ShW27f2jEN9bMjllA__9_yHp3IPF6PPS6x8GYml-jXX-ezNlKUhfaRiNSaq1PIGEyTUzEKU0SaFSYUxY6SpI_eW6ey2ZXfuGGqaIT4_DtRZKbQxA'
+
+3. Test by invalid key
+wrk --latency -t1 -c10 -d30m \
+https://localhost:5001/api/values \
+-H'x-jwt-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwibmFtZSI6ImludmFsaWRLZXkiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTUxNjIzOTAyMn0.YlFwNHjDAPJ-TpDgXYxlFoOMiLEgpMXnzA1WJQ-qP-mLqJV7Cswn3cvqOw1PauPg9utbzfIXQ1RvxKGzVPJ_77foLHtj_C34hJg3bjr5w8FNDWY97xSggt3E2u9x-9Csso3gHmu2eVKOI4ZJWsIU4fpZt-_UiI2-ynZ5AAzDFwPP9ucY00LHT-e2tkrZOMpDYq3GqEKABrF5710l_7Jd20Ik9R7G1mnwc3PaRvnPkuALAxVeLdHG6UVPKBQ2B_qL21J5Sr3KXNpHxQmfe83JFur8JSymNowDLRahRjbm2RuHKBRkvfMqulTwbkRR4m__gOp2Ho5hCUW-BP8Gi7r_6Q'
+
+
+4. open new browser to view https://localhost:5001/
+
+
+
+warn: JwtBearMemoryLeak.Authentications.CustomJwtBearerOptions[0]
+      JWT Authentication failed with token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwibmFtZSI6ImludmFsaWRLZXkiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTUxNjIzOTAyMn0.YlFwNHjDAPJ-TpDgXYxlFoOMiLEgpMXnzA1WJQ-qP-mLqJV7Cswn3cvqOw1PauPg9utbzfIXQ1RvxKGzVPJ_77foLHtj_C34hJg3bjr5w8FNDWY97xSggt3E2u9x-9Csso3gHmu2eVKOI4ZJWsIU4fpZt-_UiI2-ynZ5AAzDFwPP9ucY00LHT-e2tkrZOMpDYq3GqEKABrF5710l_7Jd20Ik9R7G1mnwc3PaRvnPkuALAxVeLdHG6UVPKBQ2B_qL21J5Sr3KXNpHxQmfe83JFur8JSymNowDLRahRjbm2RuHKBRkvfMqulTwbkRR4m__gOp2Ho5hCUW-BP8Gi7r_6Q. GET /api/values. IDX10223: Lifetime validation failed. The token is expired. ValidTo: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]', Current time: '[PII is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
