@@ -16,10 +16,10 @@
         private const string PublicPemFooter = "-----END PUBLIC KEY-----";
         private const string PublicKeyPath = "keys/app1/public.pem";
 
-        private readonly IHostEnvironment _hostingEnvironment;
+        private readonly IHostingEnvironment _hostingEnvironment;
         private ConcurrentDictionary<string, RSAParameters> _rsaParametersCache = new ConcurrentDictionary<string, RSAParameters>();
 
-        public RsaCredentialProvider(IHostEnvironment hostingEnvironment)
+        public RsaCredentialProvider(IHostingEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
         }
